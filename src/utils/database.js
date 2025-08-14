@@ -7,13 +7,13 @@ const getDatabaseUrl = () => {
   if (typeof import.meta !== 'undefined' && import.meta.env) {
     return import.meta.env.VITE_DATABASE_URL
   }
-  // En production ou côté serveur, utiliser DATABASE_URL
+  // En production Netlify, utiliser NETLIFY_DATABASE_URL
   if (typeof process !== 'undefined' && process.env) {
-    return process.env.DATABASE_URL
+    return process.env.NETLIFY_DATABASE_URL || process.env.DATABASE_URL
   }
-  // Fallback pour Netlify
+  // Fallback pour Netlify côté client
   if (typeof window !== 'undefined' && window.ENV) {
-    return window.ENV.DATABASE_URL
+    return window.ENV.NETLIFY_DATABASE_URL || window.ENV.DATABASE_URL
   }
   return null
 }
