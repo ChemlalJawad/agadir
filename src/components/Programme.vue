@@ -1,53 +1,303 @@
 <template>
-  <div class="programme-card">
-    <h1>Programme 1 semaine dans le sud du Maroc</h1>
-    <ol>
-      <li><strong>Jour 1 (Arrivée à Agadir)</strong> : Installation, plage, promenade sur la Corniche, dîner au port.</li>
-      <li><strong>Jour 2 (Agadir)</strong> : Excursion à la Vallée du Paradis, visite du Souk El Had, coucher de soleil à la Kasbah.</li>
-      <li><strong>Jour 3 (Agadir → Essaouira)</strong> : Départ pour Essaouira, balade sur la plage, visite du port et des remparts.</li>
-      <li><strong>Jour 4 (Essaouira)</strong> : Découverte de la médina, shopping artisanal, dégustation de fruits de mer, kitesurf.</li>
-      <li><strong>Jour 5 (Essaouira → Marrakech)</strong> : Route vers Marrakech, installation, visite du Jardin Majorelle et Musée Yves Saint Laurent.</li>
-      <li><strong>Jour 6 (Marrakech)</strong> : Découverte de la médina, souks, Palais de la Bahia, soirée sur la place Jemaa el-Fna.</li>
-      <li><strong>Jour 7 (Marrakech - Départ)</strong> : Balade en calèche dans la Palmeraie, temps libre, vol retour.</li>
-    </ol>
-    <p>Ce programme vous permet de découvrir la mer, la culture, la gastronomie et les paysages du sud marocain, avec un itinéraire fluide entre Agadir, Essaouira et Marrakech.</p>
+  <div class="programme-container">
+    <div class="hero-section">
+      <h1 class="hero-title">Voyage de ouf entre potes au Maroc</h1>
+      <p class="hero-subtitle">7 jours d'aventures épiques • Octobre 2025</p>
+    </div>
+    
+    <div class="timeline">
+      <div class="timeline-item" v-for="(day, index) in days" :key="index">
+        <div class="timeline-dot">{{ index + 1 }}</div>
+        <div class="timeline-content" @click="navigateToDay(index + 1)">
+          <h3 class="day-title">{{ day.title }}</h3>
+          <p class="day-description">{{ day.description }}</p>
+          <div class="day-highlights">
+            <span class="highlight" v-for="highlight in day.highlights" :key="highlight">
+              {{ highlight }}
+            </span>
+          </div>
+          <div class="day-action">
+            <span class="view-details">👁️ Voir les détails</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="journey-summary">
+      <h2>Votre aventure marocaine entre potes</h2>
+      <p>Un itinéraire de ouf parfaitement orchestré entre mer, culture et délires. De l'arrivée à Agadir aux derniers moments épiques à Marrakech, découvrez les joyaux du Sud marocain dans un voyage fun et authentique avec votre team !</p>
+    </div>
   </div>
 </template>
 
 <script setup>
-// ...existing code...
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
+
+const navigateToDay = (dayNumber) => {
+  router.push(`/jour${dayNumber}`)
+}
+
+const days = [
+  {
+    title: "Jour 1 - Arrivée à Agadir",
+    description: "Débarquement de la team et première session détente",
+    highlights: ["🏖️ Beach time", "🌅 Corniche", "🍻 Apéro vue mer"]
+  },
+  {
+    title: "Jour 2 - Agadir exploration",
+    description: "On explore la ville et ses spots de ouf",
+    highlights: ["🏞️ Vallée du Paradis", "🛍️ Souk El Had", "🏰 Kasbah"]
+  },
+  {
+    title: "Jour 3 - Route vers Essaouira",
+    description: "Road trip vers la cité des vents",
+    highlights: ["🌊 Surf spots", "⛵ Port", "🏛️ Remparts"]
+  },
+  {
+    title: "Jour 4 - Essaouira authentique",
+    description: "Kitesurf, art et fruits de mer avec la team",
+    highlights: ["🎨 Galeries", "🦐 Plateau fruits de mer", "🪁 Kitesurf"]
+  },
+  {
+    title: "Jour 5 - Vers Marrakech",
+    description: "Direction la ville rouge pour l'aventure",
+    highlights: ["🌿 Jardin Majorelle", "👗 Musée YSL", "🏨 Installation"]
+  },
+  {
+    title: "Jour 6 - Marrakech magique",
+    description: "Immersion totale dans la médina avec les potes",
+    highlights: ["🕌 Médina", "🛍️ Souks", "🎭 Jemaa el-Fna"]
+  },
+  {
+    title: "Jour 7 - Derniers délires",
+    description: "Dernières aventures avant le retour",
+    highlights: ["🐪 Dromadaires/Chevaux", "🎮 Karting", "✈️ Départ"]
+  }
+]
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
-h1 {
-  color: #2563eb;
-  margin-bottom: 2rem;
-  font-family: 'Montserrat', Arial, sans-serif;
-  font-size: 2rem;
-  text-align: center;
-}
-.programme-card {
-  background: #fff;
-  padding: 2rem;
-  border-radius: 18px;
-  box-shadow: 0 4px 24px #0002;
-  max-width: 700px;
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap');
+
+.programme-container {
+  max-width: 1000px;
   margin: 0 auto;
 }
-ol {
-  padding-left: 1.2rem;
-}
-li {
-  margin-bottom: 1.2rem;
-  font-size: 1.15rem;
-  color: #222;
-  font-family: 'Montserrat', Arial, sans-serif;
-}
-p {
-  margin-top: 2rem;
-  font-size: 1.1rem;
-  color: #555;
+
+.hero-section {
   text-align: center;
+  margin-bottom: 4rem;
+  padding: 3rem 2rem;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.hero-title {
+  font-size: 3.5rem;
+  font-weight: 800;
+  color: white;
+  margin-bottom: 1rem;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  letter-spacing: -1px;
+}
+
+.hero-subtitle {
+  font-size: 1.3rem;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 400;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.timeline {
+  position: relative;
+  padding: 2rem 0;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: linear-gradient(180deg, #ff6b6b, #4ecdc4, #45b7d1, #f9ca24);
+  border-radius: 2px;
+  transform: translateX(-50%);
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 3rem;
+  display: flex;
+  align-items: center;
+}
+
+.timeline-item:nth-child(even) {
+  flex-direction: row-reverse;
+}
+
+.timeline-dot {
+  position: absolute;
+  left: 50%;
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 800;
+  font-size: 1.2rem;
+  transform: translateX(-50%);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+  border: 4px solid rgba(255, 255, 255, 0.9);
+  z-index: 10;
+}
+
+.timeline-content {
+  width: 40%;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  padding: 2rem;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  margin: 0 5%;
+}
+
+.timeline-content:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2);
+}
+
+.day-action {
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.view-details {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.9rem;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: color 0.3s ease;
+}
+
+.timeline-content:hover .view-details {
+  color: white;
+}
+
+.timeline-item:nth-child(even) .timeline-content {
+  margin-right: 5%;
+  margin-left: auto;
+}
+
+.timeline-item:nth-child(odd) .timeline-content {
+  margin-left: 5%;
+  margin-right: auto;
+}
+
+.day-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.day-description {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.day-highlights {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.highlight {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.journey-summary {
+  text-align: center;
+  margin-top: 4rem;
+  padding: 3rem 2rem;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.journey-summary h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 1rem;
+  text-shadow: 0 2px 15px rgba(0, 0, 0, 0.3);
+}
+
+.journey-summary p {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.7;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 2.5rem;
+  }
+  
+  .timeline::before {
+    left: 30px;
+  }
+  
+  .timeline-dot {
+    left: 30px;
+    width: 50px;
+    height: 50px;
+    font-size: 1rem;
+  }
+  
+  .timeline-item {
+    flex-direction: column;
+    align-items: flex-start;
+    padding-left: 80px;
+  }
+  
+  .timeline-item:nth-child(even) {
+    flex-direction: column;
+  }
+  
+  .timeline-content {
+    width: 100%;
+    margin: 0;
+  }
+  
+  .timeline-item:nth-child(even) .timeline-content,
+  .timeline-item:nth-child(odd) .timeline-content {
+    margin: 0;
+  }
 }
 </style>
