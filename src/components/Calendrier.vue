@@ -162,7 +162,8 @@ import {
   updateActivity, 
   deleteActivity,
   createActivitiesTable,
-  initializePresetActivities 
+  initializePresetActivities,
+  isDatabaseAvailable 
 } from '../utils/database.js'
 
 // Dates du voyage : 11-18 octobre 2025
@@ -191,7 +192,7 @@ const dayHeaders = ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam']
 
 // Variable pour accéder à l'environment dans le template
 const isDatabaseConnected = computed(() => {
-  return !!import.meta.env.VITE_DATABASE_URL
+  return isDatabaseAvailable()
 })
 
 // Activités pré-définies du programme

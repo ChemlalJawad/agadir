@@ -1,11 +1,45 @@
 // Database utility functions for Neon
 import { neon } from '@neondatabase/serverless'
 
-// Initialize Neon client
-const sql = neon(import.meta.env.VITE_DATABASE_URL || process.env.DATABASE_URL)
+// Get database URL from environment
+const getDatabaseUrl = () => {
+  // En développement, utiliser VITE_DATABASE_URL
+  if (typeof import.meta !== 'undefined' && import.meta.env) {
+    return import.meta.env.VITE_DATABASE_URL
+  }
+  // En production ou côté serveur, utiliser DATABASE_URL
+  if (typeof process !== 'undefined' && process.env) {
+    return process.env.DATABASE_URL
+  }
+  // Fallback pour Netlify
+  if (typeof window !== 'undefined' && window.ENV) {
+    return window.ENV.DATABASE_URL
+  }
+  return null
+}
+
+// Initialize Neon client avec gestion d'erreur
+let sql = null
+try {
+  const dbUrl = getDatabaseUrl()
+  if (dbUrl) {
+    sql = neon(dbUrl)
+  }
+} catch (error) {
+  console.warn('Neon database not available:', error.message)
+}
+
+// Check if database is available
+export const isDatabaseAvailable = () => {
+  return sql !== null && getDatabaseUrl() !== null
+}
 
 // Activity schema
 export const createActivitiesTable = async () => {
+  if (!sql) {
+    throw new Error('Database connection not available')
+  }
+  
   try {
     await sql`
       CREATE TABLE IF NOT EXISTS activities (
@@ -22,11 +56,16 @@ export const createActivitiesTable = async () => {
     console.log('Activities table created successfully')
   } catch (error) {
     console.error('Error creating activities table:', error)
+    throw error
   }
 }
 
 // Get all activities
 export const getActivities = async () => {
+  if (!sql) {
+    throw new Error('Database connection not available')
+  }
+  
   try {
     const result = await sql`
       SELECT * FROM activities 
@@ -44,12 +83,16 @@ export const getActivities = async () => {
     }))
   } catch (error) {
     console.error('Error fetching activities:', error)
-    return []
+    throw error
   }
 }
 
 // Get activities for a specific date
 export const getActivitiesForDate = async (date) => {
+  if (!sql) {
+    throw new Error('Database connection not available')
+  }
+  
   try {
     const dateStr = date.toISOString().split('T')[0]
     const result = await sql`
@@ -69,12 +112,16 @@ export const getActivitiesForDate = async (date) => {
     }))
   } catch (error) {
     console.error('Error fetching activities for date:', error)
-    return []
+    throw error
   }
 }
 
 // Create a new activity
 export const createActivity = async (activityData) => {
+  if (!sql) {
+    throw new Error('Database connection not available')
+  }
+  
   try {
     const { title, description, date, time, isPreset = false } = activityData
     const dateStr = date.toISOString().split('T')[0]
