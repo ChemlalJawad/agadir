@@ -3,6 +3,7 @@ import Agadir from './components/Agadir.vue'
 import Marrakech from './components/Marrakech.vue'
 import Essaouira from './components/Essaouira.vue'
 import Programme from './components/Programme.vue'
+import Calendrier from './components/Calendrier.vue'
 import Jour1 from './components/Jour1.vue'
 import Jour2 from './components/Jour2.vue'
 import Jour3 from './components/Jour3.vue'
@@ -10,6 +11,7 @@ import Jour4 from './components/Jour4.vue'
 
 const routes = [
   { path: '/', component: Programme },
+  { path: '/calendrier', component: Calendrier },
   { path: '/agadir', component: Agadir },
   { path: '/marrakech', component: Marrakech },
   { path: '/essaouira', component: Essaouira },

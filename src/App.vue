@@ -12,6 +12,10 @@
           <span class="nav-icon">🗓️</span>
           <span>Programme</span>
         </router-link>
+        <router-link to="/calendrier" class="nav-item">
+          <span class="nav-icon">📅</span>
+          <span>Calendrier</span>
+        </router-link>
         <router-link to="/agadir" class="nav-item">
           <span class="nav-icon">🏖️</span>
           <span>Agadir</span>
@@ -54,17 +58,11 @@
   left: 0;
   width: 100%;
   height: 100vh;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #f5576c 75%, #4facfe 100%);
-  background-size: 400% 400%;
-  animation: gradientShift 15s ease infinite;
+  background: linear-gradient(135deg, #2c3e50 0%, #34495e 50%, #2c3e50 100%);
   z-index: -1;
 }
 
-@keyframes gradientShift {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
+/* Suppression de l'animation gradient pour un design plus sobre */
 
 .main-header {
   backdrop-filter: blur(20px);

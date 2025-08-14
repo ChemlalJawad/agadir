@@ -124,7 +124,7 @@ const days = [
   top: 0;
   bottom: 0;
   width: 4px;
-  background: linear-gradient(180deg, #ff6b6b, #4ecdc4, #45b7d1, #f9ca24);
+  background: linear-gradient(180deg, #34495e, #2c3e50, #34495e);
   border-radius: 2px;
   transform: translateX(-50%);
 }
@@ -145,7 +145,7 @@ const days = [
   left: 50%;
   width: 60px;
   height: 60px;
-  background: linear-gradient(135deg, #667eea, #764ba2);
+  background: linear-gradient(135deg, #34495e, #2c3e50);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -154,7 +154,7 @@ const days = [
   font-weight: 800;
   font-size: 1.2rem;
   transform: translateX(-50%);
-  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+  box-shadow: 0 8px 25px rgba(44, 62, 80, 0.4);
   border: 4px solid rgba(255, 255, 255, 0.9);
   z-index: 10;
 }
