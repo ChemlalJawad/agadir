@@ -1,0 +1,17 @@
+{
+  "name": "Morocco Explorer - Voyage au Maroc",
+  "short_name": "Morocco Explorer",
+  "description": "Découvrez le Maroc avec Morocco Explorer. Explorez Agadir, Essaouira et Marrakech.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#2c3e50",
+  "theme_color": "#2c3e50",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/vite.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

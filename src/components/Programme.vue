@@ -5,22 +5,30 @@
       <p class="hero-subtitle">7 jours d'aventures épiques • Octobre 2025</p>
     </div>
     
-    <div class="timeline">
-      <div class="timeline-item" v-for="(day, index) in days" :key="index">
-        <div class="timeline-dot">{{ index + 1 }}</div>
-        <div class="timeline-content" @click="navigateToDay(index + 1)">
+    <div class="timeline" role="list">
+      <article class="timeline-item" v-for="(day, index) in days" :key="index" role="listitem">
+        <div class="timeline-dot" aria-label="Jour {{ index + 1 }}">{{ index + 1 }}</div>
+        <div
+          class="timeline-content"
+          @click="navigateToDay(index + 1)"
+          @keydown.enter="navigateToDay(index + 1)"
+          @keydown.space.prevent="navigateToDay(index + 1)"
+          tabindex="0"
+          role="button"
+          :aria-label="`Voir les détails du ${day.title}`"
+        >
           <h3 class="day-title">{{ day.title }}</h3>
           <p class="day-description">{{ day.description }}</p>
-          <div class="day-highlights">
-            <span class="highlight" v-for="highlight in day.highlights" :key="highlight">
+          <div class="day-highlights" role="list">
+            <span class="highlight" v-for="highlight in day.highlights" :key="highlight" role="listitem">
               {{ highlight }}
             </span>
           </div>
           <div class="day-action">
-            <span class="view-details">👁️ Voir les détails</span>
+            <span class="view-details" aria-hidden="true">👁️ Voir les détails</span>
           </div>
         </div>
-      </div>
+      </article>
     </div>
     
     <div class="journey-summary">
@@ -172,9 +180,16 @@ const days = [
   margin: 0 5%;
 }
 
-.timeline-content:hover {
+.timeline-content:hover,
+.timeline-content:focus {
   transform: translateY(-5px);
   box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2);
+  outline: none;
+}
+
+.timeline-content:focus-visible {
+  outline: 3px solid rgba(255, 255, 255, 0.8);
+  outline-offset: 3px;
 }
 
 .day-action {

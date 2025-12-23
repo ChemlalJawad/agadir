@@ -151,21 +151,25 @@ export const createActivity = async (activityData) => {
 
 // Update an activity
 export const updateActivity = async (id, activityData) => {
+  if (!sql) {
+    throw new Error('Database connection not available')
+  }
+
   try {
     const { title, description, date, time } = activityData
     const dateStr = date.toISOString().split('T')[0]
-    
+
     const result = await sql`
-      UPDATE activities 
-      SET title = ${title}, 
-          description = ${description}, 
-          activity_date = ${dateStr}, 
+      UPDATE activities
+      SET title = ${title},
+          description = ${description},
+          activity_date = ${dateStr},
           activity_time = ${time},
           updated_at = CURRENT_TIMESTAMP
       WHERE id = ${id}
       RETURNING *
     `
-    
+
     const activity = result[0]
     return {
       id: activity.id,
@@ -185,6 +189,10 @@ export const updateActivity = async (id, activityData) => {
 
 // Delete an activity
 export const deleteActivity = async (id) => {
+  if (!sql) {
+    throw new Error('Database connection not available')
+  }
+
   try {
     await sql`DELETE FROM activities WHERE id = ${id}`
     return true
@@ -196,6 +204,10 @@ export const deleteActivity = async (id) => {
 
 // Initialize preset activities (run once)
 export const initializePresetActivities = async () => {
+  if (!sql) {
+    throw new Error('Database connection not available')
+  }
+
   try {
     // Check if preset activities already exist
     const existing = await sql`SELECT COUNT(*) as count FROM activities WHERE is_preset = true`
