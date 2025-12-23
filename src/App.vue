@@ -1,37 +1,39 @@
 <script setup>
-// ...existing code...
+import ErrorBoundary from './components/ErrorBoundary.vue'
 </script>
 
 <template>
   <div class="app-container">
     <div class="hero-background"></div>
-    <header class="main-header">
+    <header class="main-header" role="banner">
       <h1 class="brand-title">✈️ Morocco Explorer</h1>
-      <nav class="modern-nav">
-        <router-link to="/" class="nav-item">
-          <span class="nav-icon">🗓️</span>
+      <nav class="modern-nav" role="navigation" aria-label="Navigation principale">
+        <router-link to="/" class="nav-item" aria-label="Voir le programme du voyage">
+          <span class="nav-icon" aria-hidden="true">🗓️</span>
           <span>Programme</span>
         </router-link>
-        <router-link to="/calendrier" class="nav-item">
-          <span class="nav-icon">📅</span>
+        <router-link to="/calendrier" class="nav-item" aria-label="Consulter le calendrier">
+          <span class="nav-icon" aria-hidden="true">📅</span>
           <span>Calendrier</span>
         </router-link>
-        <router-link to="/agadir" class="nav-item">
-          <span class="nav-icon">🏖️</span>
+        <router-link to="/agadir" class="nav-item" aria-label="Découvrir Agadir">
+          <span class="nav-icon" aria-hidden="true">🏖️</span>
           <span>Agadir</span>
         </router-link>
-        <router-link to="/essaouira" class="nav-item">
-          <span class="nav-icon">🌊</span>
+        <router-link to="/essaouira" class="nav-item" aria-label="Découvrir Essaouira">
+          <span class="nav-icon" aria-hidden="true">🌊</span>
           <span>Essaouira</span>
         </router-link>
-        <router-link to="/marrakech" class="nav-item">
-          <span class="nav-icon">🕌</span>
+        <router-link to="/marrakech" class="nav-item" aria-label="Découvrir Marrakech">
+          <span class="nav-icon" aria-hidden="true">🕌</span>
           <span>Marrakech</span>
         </router-link>
       </nav>
     </header>
-    <main class="main-content">
-      <router-view />
+    <main class="main-content" role="main">
+      <ErrorBoundary>
+        <router-view />
+      </ErrorBoundary>
     </main>
   </div>
 </template>
@@ -110,10 +112,17 @@
   letter-spacing: 0.5px;
 }
 
-.nav-item:hover {
+.nav-item:hover,
+.nav-item:focus {
   transform: translateY(-3px) scale(1.05);
   background: rgba(255, 255, 255, 0.2);
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  outline: none;
+}
+
+.nav-item:focus-visible {
+  outline: 3px solid rgba(255, 255, 255, 0.8);
+  outline-offset: 3px;
 }
 
 .nav-item.router-link-exact-active {
