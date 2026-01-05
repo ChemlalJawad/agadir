@@ -3,6 +3,12 @@ import { createRouter, createWebHistory } from 'vue-router'
 const routes = [
   {
     path: '/',
+    name: 'HomeworkHelper',
+    component: () => import('./components/HomeworkHelper.vue'),
+    meta: { title: 'Homework Helper - AI Powered Learning' }
+  },
+  {
+    path: '/programme',
     name: 'Programme',
     component: () => import('./components/Programme.vue'),
     meta: { title: 'Programme - Morocco Explorer' }
@@ -95,7 +101,7 @@ const router = createRouter({
 
 // Update page title on route change
 router.beforeEach((to, from, next) => {
-  document.title = to.meta.title || 'Morocco Explorer - Voyage au Maroc'
+  document.title = to.meta.title || 'Homework Helper - AI Powered Learning'
   next()
 })
 
