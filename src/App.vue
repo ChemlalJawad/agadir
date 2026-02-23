@@ -4,32 +4,23 @@ import ErrorBoundary from './components/ErrorBoundary.vue'
 
 <template>
   <div class="app-container">
-    <div class="hero-background"></div>
+    <div class="aurora"></div>
+    <div class="grain"></div>
+
     <header class="main-header" role="banner">
-      <h1 class="brand-title">✈️ Morocco Explorer</h1>
-      <nav class="modern-nav" role="navigation" aria-label="Navigation principale">
-        <router-link to="/" class="nav-item" aria-label="Voir le programme du voyage">
-          <span class="nav-icon" aria-hidden="true">🗓️</span>
-          <span>Programme</span>
-        </router-link>
-        <router-link to="/calendrier" class="nav-item" aria-label="Consulter le calendrier">
-          <span class="nav-icon" aria-hidden="true">📅</span>
-          <span>Calendrier</span>
-        </router-link>
-        <router-link to="/agadir" class="nav-item" aria-label="Découvrir Agadir">
-          <span class="nav-icon" aria-hidden="true">🏖️</span>
-          <span>Agadir</span>
-        </router-link>
-        <router-link to="/essaouira" class="nav-item" aria-label="Découvrir Essaouira">
-          <span class="nav-icon" aria-hidden="true">🌊</span>
-          <span>Essaouira</span>
-        </router-link>
-        <router-link to="/marrakech" class="nav-item" aria-label="Découvrir Marrakech">
-          <span class="nav-icon" aria-hidden="true">🕌</span>
-          <span>Marrakech</span>
-        </router-link>
-      </nav>
+      <div class="header-inner">
+        <h1 class="brand-title">🗾 Japan Travel Command Center</h1>
+        <p class="brand-subtitle">Planifier, réserver et piloter ton itinéraire jour par jour</p>
+        <nav class="modern-nav" role="navigation" aria-label="Navigation principale">
+          <router-link to="/" class="nav-item">Programme</router-link>
+          <router-link to="/calendrier" class="nav-item">Calendrier</router-link>
+          <router-link to="/agadir" class="nav-item">Tokyo</router-link>
+          <router-link to="/essaouira" class="nav-item">Fuji & Hakone</router-link>
+          <router-link to="/marrakech" class="nav-item">Kansai & Extensions</router-link>
+        </nav>
+      </div>
     </header>
+
     <main class="main-content" role="main">
       <ErrorBoundary>
         <router-view />
@@ -39,130 +30,85 @@ import ErrorBoundary from './components/ErrorBoundary.vue'
 </template>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap');
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
 .app-container {
   min-height: 100vh;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: 'Inter', sans-serif;
+  color: #fff;
   position: relative;
   overflow-x: hidden;
 }
 
-.hero-background {
+.aurora {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  background: linear-gradient(135deg, #2c3e50 0%, #34495e 50%, #2c3e50 100%);
-  z-index: -1;
+  inset: -20%;
+  background:
+    radial-gradient(circle at 20% 30%, rgba(79, 70, 229, 0.35), transparent 35%),
+    radial-gradient(circle at 80% 25%, rgba(236, 72, 153, 0.28), transparent 30%),
+    radial-gradient(circle at 60% 80%, rgba(14, 165, 233, 0.25), transparent 30%),
+    linear-gradient(135deg, #020617 0%, #0f172a 45%, #1e1b4b 100%);
+  filter: blur(12px) saturate(120%);
+  z-index: -2;
+  animation: drift 18s ease-in-out infinite alternate;
 }
 
-/* Suppression de l'animation gradient pour un design plus sobre */
+.grain {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.05) 0.5px, transparent 0.5px);
+  background-size: 3px 3px;
+  opacity: 0.22;
+  pointer-events: none;
+}
 
 .main-header {
-  backdrop-filter: blur(20px);
-  background: rgba(255, 255, 255, 0.1);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-  padding: 1.5rem 2rem;
   position: sticky;
   top: 0;
-  z-index: 1000;
+  z-index: 10;
+  backdrop-filter: blur(18px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(2, 6, 23, 0.55);
 }
 
-.brand-title {
-  color: white;
-  font-size: 2rem;
-  font-weight: 800;
+.header-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1.2rem 1rem;
   text-align: center;
-  margin-bottom: 1.5rem;
-  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
-  letter-spacing: -0.5px;
 }
+
+.brand-title { font-size: clamp(1.4rem, 2.3vw, 2.2rem); font-weight: 800; }
+.brand-subtitle { margin-top: 0.4rem; opacity: 0.9; font-size: 0.95rem; }
 
 .modern-nav {
+  margin-top: 1rem;
   display: flex;
-  justify-content: center;
-  gap: 1rem;
   flex-wrap: wrap;
+  gap: 0.7rem;
+  justify-content: center;
 }
 
 .nav-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 1rem 1.5rem;
   text-decoration: none;
-  color: white;
+  color: #fff;
+  padding: 0.65rem 1rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.08);
+  transition: 220ms ease;
   font-weight: 600;
   font-size: 0.9rem;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  backdrop-filter: blur(10px);
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
 }
 
-.nav-item:hover,
-.nav-item:focus {
-  transform: translateY(-3px) scale(1.05);
-  background: rgba(255, 255, 255, 0.2);
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-  outline: none;
-}
+.nav-item:hover { transform: translateY(-2px); background: rgba(255,255,255,0.18); }
+.nav-item.router-link-exact-active { background: linear-gradient(135deg, #4f46e5, #ec4899); border-color: transparent; }
 
-.nav-item:focus-visible {
-  outline: 3px solid rgba(255, 255, 255, 0.8);
-  outline-offset: 3px;
-}
+.main-content { max-width: 1200px; margin: 0 auto; padding: 2rem 1rem 3rem; }
 
-.nav-item.router-link-exact-active {
-  background: rgba(255, 255, 255, 0.3);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-}
-
-.nav-icon {
-  font-size: 1.5rem;
-  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.3));
-}
-
-.main-content {
-  padding: 3rem 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-@media (max-width: 768px) {
-  .main-header {
-    padding: 1rem;
-  }
-  
-  .brand-title {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-  }
-  
-  .modern-nav {
-    gap: 0.5rem;
-  }
-  
-  .nav-item {
-    padding: 0.75rem 1rem;
-    font-size: 0.8rem;
-  }
-  
-  .main-content {
-    padding: 2rem 1rem;
-  }
+@keyframes drift {
+  from { transform: translateY(0) scale(1); }
+  to { transform: translateY(-2%) scale(1.05); }
 }
 </style>
