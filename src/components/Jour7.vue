@@ -1,8 +1,8 @@
 <template>
   <div class="day-detail">
     <div class="day-header">
-      <button @click="$router.go(-1)" class="back-btn">← Retour au programme</button>
-      <div class="day-badge">Jour 7</div>
+      <BaseButton @click="$router.go(-1)" variant="secondary" class="back-btn"><ArrowLeft :size="16" aria-hidden="true" />Retour au programme</BaseButton>
+      <StatusBadge variant="info" :icon="Calendar">Jour 7</StatusBadge>
       <h1 class="day-title">Derniers Moments</h1>
       <p class="day-subtitle">Dernières aventures avant le retour</p>
     </div>
@@ -55,22 +55,22 @@
           <div class="alt-card">
             <h3>🌿 Jardin secret</h3>
             <p>Visite du Jardin Secret, oasis cachée au cœur de la médina avec architecture islamique et andalouse.</p>
-            <span class="difficulty easy">Paisible</span>
+            <StatusBadge variant="success" :icon="CircleDot">Paisible</StatusBadge>
           </div>
           <div class="alt-card">
             <h3>☕ Café des Épices</h3>
             <p>Moment détente sur une terrasse avec vue sur les souks pour siroter un thé à la menthe et observer l'animation.</p>
-            <span class="difficulty easy">Relaxant</span>
+            <StatusBadge variant="success" :icon="CircleDot">Relaxant</StatusBadge>
           </div>
           <div class="alt-card">
             <h3>� Karting Marrakech</h3>
             <p>Session karting entre potes sur circuit professionnel ! Parfait pour une compétition amicale avant le départ.</p>
-            <span class="difficulty medium">Fun</span>
+            <StatusBadge variant="warning" :icon="CircleDot">Fun</StatusBadge>
           </div>
           <div class="alt-card">
             <h3>� Équitation groupe</h3>
             <p>Cours d'équitation collectif dans un centre équestre avec balade en groupe dans l'Atlas. Parfait pour rigoler entre potes !</p>
-            <span class="difficulty medium">Sportif</span>
+            <StatusBadge variant="warning" :icon="CircleDot">Sportif</StatusBadge>
           </div>
         </div>
       </div>
@@ -120,6 +120,9 @@
 </template>
 
 <script setup>
+import { ArrowLeft, Calendar, CircleDot } from 'lucide-vue-next'
+import BaseButton from './BaseButton.vue'
+import StatusBadge from './StatusBadge.vue'
 // Page détaillée du Jour 7
 </script>
 

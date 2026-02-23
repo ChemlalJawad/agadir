@@ -1,8 +1,8 @@
 <template>
   <div class="day-detail">
     <div class="day-header">
-      <button @click="$router.go(-1)" class="back-btn">← Retour au programme</button>
-      <div class="day-badge">Jour 5</div>
+      <BaseButton @click="$router.go(-1)" variant="secondary" class="back-btn"><ArrowLeft :size="16" aria-hidden="true" />Retour au programme</BaseButton>
+      <StatusBadge variant="info" :icon="Calendar">Jour 5</StatusBadge>
       <h1 class="day-title">Vers Marrakech</h1>
       <p class="day-subtitle">Direction la ville rouge pour l'aventure</p>
     </div>
@@ -62,22 +62,22 @@
           <div class="alt-card">
             <h3>🛀 Hammam royal</h3>
             <p>Expérience authentique dans un hammam traditionnel avec gommage au savon noir et massage relaxant.</p>
-            <span class="difficulty easy">Détente</span>
+            <StatusBadge variant="success" :icon="CircleDot">Détente</StatusBadge>
           </div>
           <div class="alt-card">
             <h3>🛍️ Gueliz moderne</h3>
             <p>Shopping dans le quartier moderne de Gueliz : centres commerciaux, boutiques et cafés contemporains.</p>
-            <span class="difficulty easy">Shopping</span>
+            <StatusBadge variant="success" :icon="CircleDot">Shopping</StatusBadge>
           </div>
           <div class="alt-card">
             <h3>🚁 Survol en hélicoptère</h3>
             <p>Vue aérienne époustouflante sur Marrakech, l'Atlas et la palmeraie. Expérience inoubliable !</p>
-            <span class="difficulty medium">Luxe</span>
+            <StatusBadge variant="warning" :icon="CircleDot">Luxe</StatusBadge>
           </div>
           <div class="alt-card">
             <h3>🧘‍♀️ Yoga et méditation</h3>
             <p>Séance de yoga dans un riad avec vue sur les toits de la médina pour se ressourcer.</p>
-            <span class="difficulty easy">Zen</span>
+            <StatusBadge variant="success" :icon="CircleDot">Zen</StatusBadge>
           </div>
         </div>
       </div>
@@ -108,6 +108,9 @@
 </template>
 
 <script setup>
+import { ArrowLeft, Calendar, CircleDot } from 'lucide-vue-next'
+import BaseButton from './BaseButton.vue'
+import StatusBadge from './StatusBadge.vue'
 // Page détaillée du Jour 5
 </script>
 

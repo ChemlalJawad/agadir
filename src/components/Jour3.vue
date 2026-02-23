@@ -1,8 +1,8 @@
 <template>
   <div class="day-detail">
     <div class="day-header">
-      <button @click="$router.go(-1)" class="back-btn">← Retour au programme</button>
-      <div class="day-badge">Jour 3</div>
+      <BaseButton @click="$router.go(-1)" variant="secondary" class="back-btn"><ArrowLeft :size="16" aria-hidden="true" />Retour au programme</BaseButton>
+      <StatusBadge variant="info" :icon="Calendar">Jour 3</StatusBadge>
       <h1 class="day-title">Route vers Essaouira</h1>
       <p class="day-subtitle">Road trip vers la cité des vents</p>
     </div>
@@ -62,22 +62,22 @@
           <div class="alt-card">
             <h3>🏄‍♂️ Cours de windsurf</h3>
             <p>Essaouira est LA destination windsurf du Maroc. Première leçon avec les vents alizés parfaits.</p>
-            <span class="difficulty hard">Sportif</span>
+            <StatusBadge variant="danger" :icon="CircleDot">Sportif</StatusBadge>
           </div>
           <div class="alt-card">
             <h3>🎵 Balade musicale</h3>
             <p>Découverte des cafés gnawa et de la musique traditionnelle souiri dans les ruelles de la médina.</p>
-            <span class="difficulty easy">Culturel</span>
+            <StatusBadge variant="success" :icon="CircleDot">Culturel</StatusBadge>
           </div>
           <div class="alt-card">
             <h3>🐪 Balade à dos de chameau</h3>
             <p>Session photos de groupe sur la grande plage d'Essaouira avec les dromadaires et l'ambiance décontractée de la ville.</p>
-            <span class="difficulty easy">Facile</span>
+            <StatusBadge variant="success" :icon="CircleDot">Facile</StatusBadge>
           </div>
           <div class="alt-card">
             <h3>🧘‍♀️ Yoga sur la plage</h3>
             <p>Séance de yoga face à l'océan Atlantique pour se reconnecter après le voyage.</p>
-            <span class="difficulty easy">Zen</span>
+            <StatusBadge variant="success" :icon="CircleDot">Zen</StatusBadge>
           </div>
         </div>
       </div>
@@ -108,6 +108,9 @@
 </template>
 
 <script setup>
+import { ArrowLeft, Calendar, CircleDot } from 'lucide-vue-next'
+import BaseButton from './BaseButton.vue'
+import StatusBadge from './StatusBadge.vue'
 // Page détaillée du Jour 3
 </script>
 

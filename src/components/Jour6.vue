@@ -1,8 +1,8 @@
 <template>
   <div class="day-detail">
     <div class="day-header">
-      <button @click="$router.go(-1)" class="back-btn">← Retour au programme</button>
-      <div class="day-badge">Jour 6</div>
+      <BaseButton @click="$router.go(-1)" variant="secondary" class="back-btn"><ArrowLeft :size="16" aria-hidden="true" />Retour au programme</BaseButton>
+      <StatusBadge variant="info" :icon="Calendar">Jour 6</StatusBadge>
       <h1 class="day-title">Marrakech Magique</h1>
       <p class="day-subtitle">Immersion totale dans la médina avec les potes</p>
     </div>
@@ -62,22 +62,22 @@
           <div class="alt-card">
             <h3>🍵 Atelier cuisine</h3>
             <p>Cours de cuisine marocaine dans un riad : préparation de tajines, couscous et pâtisseries traditionnelles.</p>
-            <span class="difficulty medium">Créatif</span>
+            <StatusBadge variant="warning" :icon="CircleDot">Créatif</StatusBadge>
           </div>
           <div class="alt-card">
             <h3>🎮 Escape game Marrakech</h3>
             <p>Escape game thématique dans la médina ! Mission en équipe pour résoudre des énigmes et découvrir les secrets de Marrakech.</p>
-            <span class="difficulty medium">Team building</span>
+            <StatusBadge variant="warning" :icon="CircleDot">Team building</StatusBadge>
           </div>
           <div class="alt-card">
             <h3>🏃‍♂️ Course dans l'Atlas</h3>
             <p>Excursion d'une journée dans les montagnes de l'Atlas avec randonnée et déjeuner chez l'habitant berbère.</p>
-            <span class="difficulty hard">Sportif</span>
+            <StatusBadge variant="danger" :icon="CircleDot">Sportif</StatusBadge>
           </div>
           <div class="alt-card">
             <h3>🎨 Atelier artisanat</h3>
             <p>Initiation à la poterie, tannage du cuir ou tissage dans les ateliers traditionnels de la médina.</p>
-            <span class="difficulty medium">Artisanal</span>
+            <StatusBadge variant="warning" :icon="CircleDot">Artisanal</StatusBadge>
           </div>
         </div>
       </div>
@@ -108,6 +108,9 @@
 </template>
 
 <script setup>
+import { ArrowLeft, Calendar, CircleDot } from 'lucide-vue-next'
+import BaseButton from './BaseButton.vue'
+import StatusBadge from './StatusBadge.vue'
 // Page détaillée du Jour 6
 </script>
 

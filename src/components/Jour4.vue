@@ -1,8 +1,8 @@
 <template>
   <div class="day-detail">
     <div class="day-header">
-      <button @click="$router.go(-1)" class="back-btn">← Retour au programme</button>
-      <div class="day-badge">Jour 4</div>
+      <BaseButton @click="$router.go(-1)" variant="secondary" class="back-btn"><ArrowLeft :size="16" aria-hidden="true" />Retour au programme</BaseButton>
+      <StatusBadge variant="info" :icon="Calendar">Jour 4</StatusBadge>
       <h1 class="day-title">Essaouira Authentique</h1>
       <p class="day-subtitle">Kitesurf, art et fruits de mer avec la team</p>
     </div>
@@ -55,22 +55,22 @@
           <div class="alt-card">
             <h3>🎵 Festival gnawa</h3>
             <p>Découverte de la musique gnawa dans les cafés traditionnels et initiation aux instruments locaux.</p>
-            <span class="difficulty easy">Culturel</span>
+            <StatusBadge variant="success" :icon="CircleDot">Culturel</StatusBadge>
           </div>
           <div class="alt-card">
             <h3>🏇 Équitation sur plage</h3>
             <p>Session équitation de groupe sur la plage d'Essaouira au coucher du soleil, expérience épique entre potes !</p>
-            <span class="difficulty medium">Modéré</span>
+            <StatusBadge variant="warning" :icon="CircleDot">Modéré</StatusBadge>
           </div>
           <div class="alt-card">
             <h3>🧘‍♀️ Retraite wellness</h3>
             <p>Journée spa et hammam traditionnel suivi d'un massage à l'huile d'argan dans un riad authentique.</p>
-            <span class="difficulty easy">Détente</span>
+            <StatusBadge variant="success" :icon="CircleDot">Détente</StatusBadge>
           </div>
           <div class="alt-card">
             <h3>📸 Atelier photo</h3>
             <p>Cours de photographie dans les ruelles colorées de la médina avec un photographe professionnel local.</p>
-            <span class="difficulty easy">Créatif</span>
+            <StatusBadge variant="success" :icon="CircleDot">Créatif</StatusBadge>
           </div>
         </div>
       </div>
@@ -101,6 +101,9 @@
 </template>
 
 <script setup>
+import { ArrowLeft, Calendar, CircleDot } from 'lucide-vue-next'
+import BaseButton from './BaseButton.vue'
+import StatusBadge from './StatusBadge.vue'
 // Page détaillée du Jour 4
 </script>
 

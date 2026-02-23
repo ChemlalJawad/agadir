@@ -1,12 +1,10 @@
 <template>
   <div v-if="hasError" class="error-container">
     <div class="error-card">
-      <div class="error-icon">⚠️</div>
+      <AlertTriangle :size="56" class="error-icon" aria-hidden="true" />
       <h2 class="error-title">Oups, quelque chose s'est mal passé</h2>
       <p class="error-message">{{ errorMessage }}</p>
-      <button class="retry-button" @click="resetError">
-        🔄 Réessayer
-      </button>
+      <BaseButton class="retry-button" variant="secondary" @click="resetError"><RotateCcw :size="16" aria-hidden="true" />Réessayer</BaseButton>
     </div>
   </div>
   <slot v-else></slot>
@@ -14,6 +12,8 @@
 
 <script setup>
 import { ref, onErrorCaptured } from 'vue'
+import { AlertTriangle, RotateCcw } from 'lucide-vue-next'
+import BaseButton from './BaseButton.vue'
 
 const hasError = ref(false)
 const errorMessage = ref('')
