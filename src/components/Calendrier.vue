@@ -2,7 +2,7 @@
   <div class="calendrier-container">
     <div class="calendrier-header">
       <h1 class="calendrier-title">📅 Calendrier de voyage</h1>
-      <p class="calendrier-subtitle">Du 11 au 18 octobre 2025 • Planifiez vos activités au Maroc</p>
+      <p class="calendrier-subtitle">Du 3 au 23 novembre 2026 • Pilotage complet du voyage au Japon</p>
       
       <!-- Indicateur de connexion -->
       <div class="connection-status">
@@ -166,11 +166,11 @@ import {
   isDatabaseAvailable 
 } from '../utils/database.js'
 
-// Dates du voyage : 11-18 octobre 2025
-const TRIP_START = new Date(2025, 9, 11) // 11 octobre 2025
-const TRIP_END = new Date(2025, 9, 18)   // 18 octobre 2025
+// Dates du voyage : 3-23 novembre 2026
+const TRIP_START = new Date(2026, 10, 3) // 3 novembre 2026
+const TRIP_END = new Date(2026, 10, 23)   // 23 novembre 2026
 
-const currentDate = ref(new Date(2025, 9, 1)) // Octobre 2025
+const currentDate = ref(new Date(2026, 10, 1)) // Novembre 2026
 const selectedDate = ref(null)
 const activities = ref([])
 const newActivity = ref({
@@ -197,49 +197,28 @@ const isDatabaseConnected = computed(() => {
 
 // Activités pré-définies du programme
 const presetActivities = [
-  // Jour 1 - 11 octobre
-  { date: new Date(2025, 9, 11), time: '10:00', title: '✈️ Arrivée Agadir', description: 'Arrivée à l\'aéroport Al Massira et transfert hôtel', isPreset: true },
-  { date: new Date(2025, 9, 11), time: '14:00', title: '🍽️ Déjeuner bienvenue', description: 'Premier repas traditionnel marocain en terrasse', isPreset: true },
-  { date: new Date(2025, 9, 11), time: '16:00', title: '🏖️ Découverte plage', description: 'Session détente sur la plage d\'Agadir', isPreset: true },
-  { date: new Date(2025, 9, 11), time: '18:00', title: '🌅 Corniche', description: 'Promenade sur la célèbre corniche', isPreset: true },
-  
-  // Jour 2 - 12 octobre
-  { date: new Date(2025, 9, 12), time: '09:00', title: '🏞️ Vallée du Paradis', description: 'Excursion dans la vallée du Paradis', isPreset: true },
-  { date: new Date(2025, 9, 12), time: '14:00', title: '🛍️ Souk El Had', description: 'Exploration du plus grand marché de la région', isPreset: true },
-  { date: new Date(2025, 9, 12), time: '17:00', title: '🏰 Kasbah Agadir', description: 'Visite des ruines de la Kasbah', isPreset: true },
-  
-  // Jour 3 - 13 octobre
-  { date: new Date(2025, 9, 13), time: '09:00', title: '🚗 Route vers Essaouira', description: 'Départ pour Essaouira (3h de route)', isPreset: true },
-  { date: new Date(2025, 9, 13), time: '13:00', title: '🌊 Arrivée Essaouira', description: 'Installation et découverte de la plage', isPreset: true },
-  { date: new Date(2025, 9, 13), time: '16:00', title: '🏛️ Remparts', description: 'Visite des remparts et fortifications', isPreset: true },
-  
-  // Jour 4 - 14 octobre
-  { date: new Date(2025, 9, 14), time: '09:00', title: '🎨 Coopératives artisanales', description: 'Découverte marqueterie de thuya et bijoux berbères', isPreset: true },
-  { date: new Date(2025, 9, 14), time: '14:00', title: '🦐 Plateau fruits de mer', description: 'Déjeuner spécialités océanes', isPreset: true },
-  { date: new Date(2025, 9, 14), time: '16:00', title: '🪁 Kitesurf', description: 'Initiation kitesurf ou équitation sur plage', isPreset: true },
-  
-  // Jour 5 - 15 octobre
-  { date: new Date(2025, 9, 15), time: '09:00', title: '🚗 Route Marrakech', description: 'Départ pour Marrakech (2h30)', isPreset: true },
-  { date: new Date(2025, 9, 15), time: '13:00', title: '🌿 Jardin Majorelle', description: 'Visite du célèbre jardin bleu', isPreset: true },
-  { date: new Date(2025, 9, 15), time: '15:00', title: '👗 Musée YSL', description: 'Découverte du musée Yves Saint Laurent', isPreset: true },
-  { date: new Date(2025, 9, 15), time: '18:00', title: '🏨 Installation', description: 'Check-in hôtel et repos', isPreset: true },
-  
-  // Jour 6 - 16 octobre
-  { date: new Date(2025, 9, 16), time: '09:00', title: '🛍️ Souks médina', description: 'Immersion dans les souks de Marrakech', isPreset: true },
-  { date: new Date(2025, 9, 16), time: '13:00', title: '🍽️ Déjeuner médina', description: 'Repas traditionnel dans un riad', isPreset: true },
-  { date: new Date(2025, 9, 16), time: '15:00', title: '🏺 Tombeaux Saadiens', description: 'Visite des merveilles architecturales', isPreset: true },
-  { date: new Date(2025, 9, 16), time: '19:00', title: '🎭 Jemaa el-Fna', description: 'Spectacle de la place légendaire', isPreset: true },
-  
-  // Jour 7 - 17 octobre
-  { date: new Date(2025, 9, 17), time: '09:00', title: '🐪 Palmeraie aventure', description: 'Balade dromadaire ou cheval dans la palmeraie', isPreset: true },
-  { date: new Date(2025, 9, 17), time: '11:00', title: '🛍️ Shopping souvenirs', description: 'Derniers achats épices, huile d\'argan', isPreset: true },
-  { date: new Date(2025, 9, 17), time: '13:00', title: '🍽️ Déjeuner adieu', description: 'Repas avec vue panoramique Atlas', isPreset: true },
-  { date: new Date(2025, 9, 17), time: '16:00', title: '🎮 Activité groupe', description: 'Karting ou équitation entre potes', isPreset: true },
-  
-  // Jour 8 - 18 octobre
-  { date: new Date(2025, 9, 18), time: '10:00', title: '🧳 Check-out', description: 'Préparatifs départ et bagages', isPreset: true },
-  { date: new Date(2025, 9, 18), time: '13:00', title: '✈️ Transfert aéroport', description: 'Route vers aéroport Marrakech-Menara', isPreset: true },
-  { date: new Date(2025, 9, 18), time: '16:00', title: '🛫 Vol retour', description: 'Départ pour la France', isPreset: true }
+  { date: new Date(2026, 10, 3), time: '16:30', title: '🌇 Shibuya Crossing', description: 'Arrivée + sunset à Shibuya', isPreset: true },
+  { date: new Date(2026, 10, 3), time: '18:00', title: '🌃 Shibuya Sky', description: 'Vue sur les néons', isPreset: true },
+  { date: new Date(2026, 10, 4), time: '08:00', title: '⛩️ Meiji Jingu', description: 'Départ matin calme', isPreset: true },
+  { date: new Date(2026, 10, 4), time: '14:00', title: '👜 Omotesando vintage', description: 'Amore, Ragtag, Komehyo, Brand Collect', isPreset: true },
+  { date: new Date(2026, 10, 5), time: '09:00', title: '🎮 Akihabara', description: 'Culture pop et électronique', isPreset: true },
+  { date: new Date(2026, 10, 5), time: '14:00', title: '📚 Nakano Broadway', description: 'Vintage pop pointu', isPreset: true },
+  { date: new Date(2026, 10, 6), time: '10:00', title: '💍 Atelier bagues', description: 'Atelier confection', isPreset: true },
+  { date: new Date(2026, 10, 6), time: '20:00', title: '🏮 Omoide Yokocho', description: 'Ambiance rétro + karting', isPreset: true },
+  { date: new Date(2026, 10, 7), time: '10:00', title: '🎬 Musée Ghibli', description: 'Réservation le 10, 2 mois avant', isPreset: true },
+  { date: new Date(2026, 10, 8), time: '07:00', title: '🌲 Nikko', description: 'Sanctuaires et forêt, retour Tokyo', isPreset: true },
+  { date: new Date(2026, 10, 9), time: '09:00', title: '🚗 Route Kawaguchiko', description: 'Début segment Fuji/Hakone', isPreset: true },
+  { date: new Date(2026, 10, 10), time: '06:30', title: '🗻 Oshino Hakkai', description: 'Visite tôt le matin', isPreset: true },
+  { date: new Date(2026, 10, 11), time: '11:00', title: '🌋 Hakone ropeway', description: 'Musée plein air + volcanique', isPreset: true },
+  { date: new Date(2026, 10, 12), time: '09:00', title: '🚄 Sendai', description: 'Train vers le Tohoku', isPreset: true },
+  { date: new Date(2026, 10, 13), time: '08:00', title: '🐈 Tashirojima ferry', description: 'Île aux chats puis Matsushima', isPreset: true },
+  { date: new Date(2026, 10, 14), time: '06:30', title: '⛩️ Fushimi Inari', description: 'Kyoto à l’aube', isPreset: true },
+  { date: new Date(2026, 10, 16), time: '09:30', title: '🚲 Excursion Nara', description: 'Tosho Daiji, Kinpusenji, Okadera, Hasedera', isPreset: true },
+  { date: new Date(2026, 10, 18), time: '10:00', title: '🧭 Osaka exploration', description: 'Shinsekai + Amerikamura', isPreset: true },
+  { date: new Date(2026, 10, 19), time: '08:30', title: '🎢 Universal Studios Japan', description: 'Super Nintendo World (2 mois avance)', isPreset: true },
+  { date: new Date(2026, 10, 21), time: '10:00', title: '🌿 Ghibli Park', description: 'Début segment final Alpes', isPreset: true },
+  { date: new Date(2026, 10, 22), time: '11:00', title: '🏘️ Vallée de Kiso', description: 'Magome et Tsumago', isPreset: true },
+  { date: new Date(2026, 10, 23), time: '09:00', title: '🏔️ Takayama + ryokan', description: 'Clôture du voyage', isPreset: true }
 ]
 
 const getCurrentMonthYear = () => {
