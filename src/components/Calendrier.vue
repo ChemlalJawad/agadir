@@ -1,30 +1,22 @@
 <template>
   <div class="calendrier-container">
     <div class="calendrier-header">
-      <h1 class="calendrier-title">📅 Calendrier de voyage</h1>
+      <h1 class="calendrier-title">Calendrier de voyage</h1>
       <p class="calendrier-subtitle">Du 11 au 18 octobre 2025 • Planifiez vos activités au Maroc</p>
       
       <!-- Indicateur de connexion -->
       <div class="connection-status">
-        <div v-if="isLoading" class="status loading">
-          🔄 Chargement...
-        </div>
-        <div v-else-if="dbError" class="status error">
-          ⚠️ {{ dbError }}
-        </div>
-        <div v-else-if="isDatabaseConnected" class="status connected">
-          🟢 Connecté à Neon Database
-        </div>
-        <div v-else class="status local">
-          🟡 Mode local (localStorage)
-        </div>
+        <StatusBadge v-if="isLoading" variant="info" :icon="LoaderCircle" class="status loading">Chargement</StatusBadge>
+        <StatusBadge v-else-if="dbError" variant="danger" :icon="AlertTriangle" class="status error">{{ dbError }}</StatusBadge>
+        <StatusBadge v-else-if="isDatabaseConnected" variant="success" :icon="Database" class="status connected">Connecté à Neon Database</StatusBadge>
+        <StatusBadge v-else variant="warning" :icon="HardDrive" class="status local">Mode local (localStorage)</StatusBadge>
       </div>
     </div>
 
     <div class="calendar-controls">
-      <button @click="previousMonth" class="control-btn">← Mois précédent</button>
+      <BaseButton @click="previousMonth" variant="secondary" class="control-btn"><ChevronLeft :size="16" aria-hidden="true" />Mois précédent</BaseButton>
       <h2 class="current-month">{{ getCurrentMonthYear() }}</h2>
-      <button @click="nextMonth" class="control-btn">Mois suivant →</button>
+      <BaseButton @click="nextMonth" variant="secondary" class="control-btn">Mois suivant<ChevronRight :size="16" aria-hidden="true" /></BaseButton>
     </div>
 
     <div class="calendar-grid">
@@ -67,8 +59,8 @@
 
     <div v-if="selectedDate" class="activity-panel">
       <h3 class="panel-title">
-        📋 Activités du {{ formatDate(selectedDate) }}
-        <span v-if="isTravelDay(selectedDate)" class="travel-badge">Jour {{ getTravelDayNumber(selectedDate) }}</span>
+        Activités du {{ formatDate(selectedDate) }}
+        <StatusBadge v-if="isTravelDay(selectedDate)" variant="info" :icon="Plane" class="travel-badge">Jour {{ getTravelDayNumber(selectedDate) }}</StatusBadge>
       </h3>
       
       <div class="activity-form">
@@ -87,7 +79,7 @@
           placeholder="Description (optionnel)"
           class="activity-textarea"
         ></textarea>
-        <button @click="addActivity" class="add-btn">➕ Ajouter</button>
+        <BaseButton @click="addActivity" class="add-btn"><Plus :size="16" aria-hidden="true" />Ajouter</BaseButton>
       </div>
 
       <div class="activities-list">
@@ -106,8 +98,8 @@
             </div>
           </div>
           <div class="activity-actions">
-            <button @click.stop="editActivity(activity)" class="edit-btn">✏️</button>
-            <button @click.stop="removeActivity(activity.id)" class="remove-btn">🗑️</button>
+            <BaseButton @click.stop="editActivity(activity)" variant="ghost" class="edit-btn" aria-label="Modifier"><Pencil :size="16" aria-hidden="true" /></BaseButton>
+            <BaseButton @click.stop="removeActivity(activity.id)" variant="ghost" class="remove-btn" aria-label="Supprimer"><Trash2 :size="16" aria-hidden="true" /></BaseButton>
           </div>
         </div>
         
@@ -144,10 +136,10 @@
         </div>
 
         <div class="modal-actions">
-          <button v-if="!isEditing" @click="startEditing" class="edit-modal-btn">✏️ Modifier</button>
-          <button v-if="isEditing" @click="saveActivity" class="save-btn">💾 Sauvegarder</button>
-          <button @click="removeActivity(modalActivity.id)" class="delete-modal-btn">🗑️ Supprimer</button>
-          <button @click="closeModal" class="cancel-btn">❌ Fermer</button>
+          <BaseButton v-if="!isEditing" @click="startEditing" variant="secondary" class="edit-modal-btn"><Pencil :size="16" aria-hidden="true" />Modifier</BaseButton>
+          <BaseButton v-if="isEditing" @click="saveActivity" class="save-btn"><Save :size="16" aria-hidden="true" />Sauvegarder</BaseButton>
+          <BaseButton @click="removeActivity(modalActivity.id)" variant="ghost" class="delete-modal-btn"><Trash2 :size="16" aria-hidden="true" />Supprimer</BaseButton>
+          <BaseButton @click="closeModal" variant="secondary" class="cancel-btn"><X :size="16" aria-hidden="true" />Fermer</BaseButton>
         </div>
       </div>
     </div>
@@ -156,6 +148,9 @@
 
 <script setup>
 import { ref, computed, onMounted } from 'vue'
+import { AlertTriangle, ChevronLeft, ChevronRight, Database, HardDrive, LoaderCircle, Pencil, Plane, Plus, Save, Trash2, X } from 'lucide-vue-next'
+import BaseButton from './BaseButton.vue'
+import StatusBadge from './StatusBadge.vue'
 import { 
   getActivities, 
   createActivity, 

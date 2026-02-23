@@ -8,20 +8,18 @@
       </p>
       <div class="actions">
         <router-link to="/" class="home-button">
-          🏠 Retour à l'accueil
+          Retour à l'accueil
         </router-link>
-        <button @click="goBack" class="back-button">
-          ← Page précédente
-        </button>
+        <BaseButton @click="goBack" variant="secondary" class="back-button"><ArrowLeft :size="16" aria-hidden="true" />Page précédente</BaseButton>
       </div>
       <div class="suggestions">
         <h3>Suggestions de navigation :</h3>
         <div class="suggestion-links">
-          <router-link to="/" class="suggestion-link">📋 Programme</router-link>
-          <router-link to="/calendrier" class="suggestion-link">📅 Calendrier</router-link>
-          <router-link to="/agadir" class="suggestion-link">🏖️ Agadir</router-link>
-          <router-link to="/essaouira" class="suggestion-link">🌊 Essaouira</router-link>
-          <router-link to="/marrakech" class="suggestion-link">🕌 Marrakech</router-link>
+          <router-link to="/" class="suggestion-link">Programme</router-link>
+          <router-link to="/calendrier" class="suggestion-link">Calendrier</router-link>
+          <router-link to="/agadir" class="suggestion-link">Agadir</router-link>
+          <router-link to="/essaouira" class="suggestion-link">Essaouira</router-link>
+          <router-link to="/marrakech" class="suggestion-link">Marrakech</router-link>
         </div>
       </div>
     </div>
@@ -29,7 +27,9 @@
 </template>
 
 <script setup>
+import { ArrowLeft } from 'lucide-vue-next'
 import { useRouter } from 'vue-router'
+import BaseButton from './BaseButton.vue'
 
 const router = useRouter()
 

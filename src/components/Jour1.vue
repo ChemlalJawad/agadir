@@ -1,8 +1,8 @@
 <template>
   <div class="day-detail">
     <div class="day-header">
-      <button @click="$router.go(-1)" class="back-btn">← Retour au programme</button>
-      <div class="day-badge">Jour 1</div>
+      <BaseButton @click="$router.go(-1)" variant="secondary" class="back-btn"><ArrowLeft :size="16" aria-hidden="true" />Retour au programme</BaseButton>
+      <StatusBadge variant="info" :icon="Calendar">Jour 1</StatusBadge>
       <h1 class="day-title">Arrivée à Agadir</h1>
       <p class="day-subtitle">Débarquement de la team et première session détente</p>
     </div>
@@ -55,22 +55,22 @@
           <div class="alt-card">
             <h3>🏨 Repos à l'hôtel</h3>
             <p>Si vous êtes fatigués du voyage, profitez des équipements de l'hôtel : piscine, spa, ou simplement repos en chambre.</p>
-            <span class="difficulty easy">Facile</span>
+            <StatusBadge variant="success" :icon="CircleDot">Facile</StatusBadge>
           </div>
           <div class="alt-card">
             <h3>🛍️ Shopping moderne</h3>
             <p>Visite du centre commercial Al Mazar ou Marina d'Agadir pour du shopping contemporain et climatisé.</p>
-            <span class="difficulty medium">Modéré</span>
+            <StatusBadge variant="warning" :icon="CircleDot">Modéré</StatusBadge>
           </div>
           <div class="alt-card">
             <h3>🏄‍♂️ École de surf</h3>
             <p>Première leçon de surf avec un moniteur local. Les vagues d'Agadir sont parfaites pour débuter.</p>
-            <span class="difficulty hard">Sportif</span>
+            <StatusBadge variant="danger" :icon="CircleDot">Sportif</StatusBadge>
           </div>
           <div class="alt-card">
             <h3>🌿 Jardin Ibn Zaidoun</h3>
             <p>Balade paisible dans ce jardin botanique avec vue sur la ville et la baie d'Agadir.</p>
-            <span class="difficulty easy">Facile</span>
+            <StatusBadge variant="success" :icon="CircleDot">Facile</StatusBadge>
           </div>
         </div>
       </div>
@@ -101,6 +101,9 @@
 </template>
 
 <script setup>
+import { ArrowLeft, Calendar, CircleDot } from 'lucide-vue-next'
+import BaseButton from './BaseButton.vue'
+import StatusBadge from './StatusBadge.vue'
 // Page détaillée du Jour 1
 </script>
 

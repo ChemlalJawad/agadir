@@ -1,8 +1,8 @@
 <template>
   <div class="day-detail">
     <div class="day-header">
-      <button @click="$router.go(-1)" class="back-btn">← Retour au programme</button>
-      <div class="day-badge">Jour 2</div>
+      <BaseButton @click="$router.go(-1)" variant="secondary" class="back-btn"><ArrowLeft :size="16" aria-hidden="true" />Retour au programme</BaseButton>
+      <StatusBadge variant="info" :icon="Calendar">Jour 2</StatusBadge>
       <h1 class="day-title">Exploration d'Agadir</h1>
       <p class="day-subtitle">On explore la ville et ses spots de ouf</p>
     </div>
@@ -55,22 +55,22 @@
           <div class="alt-card">
             <h3>🏖️ Journée plage détente</h3>
             <p>Alternative relaxante : journée complète à la plage avec massage argan et sports nautiques.</p>
-            <span class="difficulty easy">Facile</span>
+            <StatusBadge variant="success" :icon="CircleDot">Facile</StatusBadge>
           </div>
           <div class="alt-card">
             <h3>🐪 Safari en quad</h3>
             <p>Excursion en quad dans les dunes et villages berbères environnants. Aventure et adrénaline garanties !</p>
-            <span class="difficulty hard">Sportif</span>
+            <StatusBadge variant="danger" :icon="CircleDot">Sportif</StatusBadge>
           </div>
           <div class="alt-card">
             <h3>🎣 Sortie pêche en mer</h3>
             <p>Embarquez avec les pêcheurs locaux pour une matinée en mer. Poisson grillé sur la plage au retour.</p>
-            <span class="difficulty medium">Modéré</span>
+            <StatusBadge variant="warning" :icon="CircleDot">Modéré</StatusBadge>
           </div>
           <div class="alt-card">
             <h3>🏛️ Musée et patrimoine</h3>
             <p>Visite du Musée du Patrimoine Amazigh et découverte de l'histoire berbère de la région.</p>
-            <span class="difficulty easy">Culturel</span>
+            <StatusBadge variant="success" :icon="CircleDot">Culturel</StatusBadge>
           </div>
         </div>
       </div>
@@ -101,6 +101,9 @@
 </template>
 
 <script setup>
+import { ArrowLeft, Calendar, CircleDot } from 'lucide-vue-next'
+import BaseButton from './BaseButton.vue'
+import StatusBadge from './StatusBadge.vue'
 // Page détaillée du Jour 2
 </script>
 

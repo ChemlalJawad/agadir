@@ -1,8 +1,8 @@
 <template>
   <div class="programme-container">
     <div class="hero-section">
-      <h1 class="hero-title">Voyage de ouf entre potes au Maroc</h1>
-      <p class="hero-subtitle">7 jours d'aventures épiques • Octobre 2025</p>
+      <h1 class="hero-title">Itinéraire entre Agadir, Essaouira et Marrakech</h1>
+      <p class="hero-subtitle">7 jours de découvertes • Octobre 2025</p>
     </div>
     
     <div class="timeline" role="list">
@@ -25,15 +25,15 @@
             </span>
           </div>
           <div class="day-action">
-            <span class="view-details" aria-hidden="true">👁️ Voir les détails</span>
+            <span class="view-details" aria-hidden="true">Voir les détails</span>
           </div>
         </div>
       </article>
     </div>
     
     <div class="journey-summary">
-      <h2>Votre aventure marocaine entre potes</h2>
-      <p>Un itinéraire de ouf parfaitement orchestré entre mer, culture et délires. De l'arrivée à Agadir aux derniers moments épiques à Marrakech, découvrez les joyaux du Sud marocain dans un voyage fun et authentique avec votre team !</p>
+      <h2>Votre parcours au Maroc</h2>
+      <p>Un itinéraire équilibré entre littoral, patrimoine et moments de détente. De l'arrivée à Agadir aux dernières activités à Marrakech, découvrez les incontournables du Sud marocain dans une expérience conviviale.</p>
     </div>
   </div>
 </template>
@@ -50,38 +50,38 @@ const navigateToDay = (dayNumber) => {
 const days = [
   {
     title: "Jour 1 - Arrivée à Agadir",
-    description: "Débarquement de la team et première session détente",
-    highlights: ["🏖️ Beach time", "🌅 Corniche", "🍻 Apéro vue mer"]
+    description: "Arrivée et installation en douceur",
+    highlights: ['Plage', 'Corniche', 'Dîner en bord de mer']
   },
   {
     title: "Jour 2 - Agadir exploration",
-    description: "On explore la ville et ses spots de ouf",
-    highlights: ["🏞️ Vallée du Paradis", "🛍️ Souk El Had", "🏰 Kasbah"]
+    description: "Découverte des points forts d'Agadir",
+    highlights: ['Vallée du Paradis', 'Souk El Had', 'Kasbah']
   },
   {
     title: "Jour 3 - Route vers Essaouira",
-    description: "Road trip vers la cité des vents",
-    highlights: ["🌊 Surf spots", "⛵ Port", "🏛️ Remparts"]
+    description: "Trajet côtier vers la cité des vents",
+    highlights: ['Spots de surf', 'Port historique', 'Remparts']
   },
   {
     title: "Jour 4 - Essaouira authentique",
-    description: "Kitesurf, art et fruits de mer avec la team",
-    highlights: ["🎨 Galeries", "🦐 Plateau fruits de mer", "🪁 Kitesurf"]
+    description: "Journée entre mer, art et gastronomie",
+    highlights: ['Galeries', 'Fruits de mer', 'Kitesurf']
   },
   {
     title: "Jour 5 - Vers Marrakech",
-    description: "Direction la ville rouge pour l'aventure",
-    highlights: ["🌿 Jardin Majorelle", "👗 Musée YSL", "🏨 Installation"]
+    description: "Transfert vers la ville rouge",
+    highlights: ['Jardin Majorelle', 'Musée YSL', 'Installation']
   },
   {
     title: "Jour 6 - Marrakech magique",
-    description: "Immersion totale dans la médina avec les potes",
-    highlights: ["🕌 Médina", "🛍️ Souks", "🎭 Jemaa el-Fna"]
+    description: "Immersion dans la médina de Marrakech",
+    highlights: ['Médina', 'Souks', 'Jemaa el-Fna']
   },
   {
     title: "Jour 7 - Derniers délires",
-    description: "Dernières aventures avant le retour",
-    highlights: ["🐪 Dromadaires/Chevaux", "🎮 Karting", "✈️ Départ"]
+    description: "Dernières expériences avant le retour",
+    highlights: ['Balade', 'Karting', 'Départ']
   }
 ]
 </script>
